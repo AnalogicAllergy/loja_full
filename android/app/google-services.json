@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "917145957479",
+    "firebase_url": "https://freelancing-d1b91.firebaseio.com",
+    "project_id": "freelancing-d1b91",
+    "storage_bucket": "freelancing-d1b91.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917145957479:android:ee7f3068a49182fda190c2",
+        "android_client_info": {
+          "package_name": "com.analogicallergy.loja_virtual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917145957479-3e63have1m6rfe0m3i4fqpgh4ladlr2u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeTNtNkRFmsTCxWc5liEUQUXtLJu1mzCU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917145957479-3e63have1m6rfe0m3i4fqpgh4ladlr2u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
