@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text("Entrar"),
+        title: const Text('Entrar'),
         centerTitle: true,
         actions: <Widget>[
           FlatButton(
@@ -22,8 +22,8 @@ class LoginScreen extends StatelessWidget {
               Navigator.of(context).pushReplacementNamed('/signup');
             },
             textColor: Colors.white,
-            child: Text(
-              "Criar conta",
+            child: const Text(
+              'Criar conta',
               style: TextStyle(fontSize: 14),
             ),
           )
@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
       body: Center(
         child: Card(
           elevation: 8,
-          margin: EdgeInsets.symmetric(horizontal: 16),
+          margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
             key: formKey,
             //observable do tipo userManager
@@ -41,17 +41,17 @@ class LoginScreen extends StatelessWidget {
               builder: (_, userManager, child) {
                 return ListView(
                   shrinkWrap: true,
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   children: <Widget>[
                     TextFormField(
-                      decoration: InputDecoration(hintText: "Email"),
+                      decoration: const InputDecoration(hintText: 'Email'),
                       enabled: !userManager.loading,
                       keyboardType: TextInputType.emailAddress,
                       autocorrect: false,
                       controller: _emailController,
-                      validator: (email) {
+                      validator: (String email) {
                         if (!emailValid(email)) {
-                          return "Por favor, insira um email valido";
+                          return 'Por favor, insira um email valido';
                         }
                         return null;
                       },
@@ -60,14 +60,14 @@ class LoginScreen extends StatelessWidget {
                       height: 16,
                     ),
                     TextFormField(
-                      decoration: InputDecoration(hintText: "Senha"),
+                      decoration: const InputDecoration(hintText: 'Senha'),
                       autocorrect: false,
                       enabled: !userManager.loading,
                       controller: _passwordController,
                       obscureText: true,
-                      validator: (password) {
+                      validator: (String password) {
                         if (password.isEmpty || password.length < 6)
-                          return "Senha invalida";
+                          return 'Senha invalida';
                         return null;
                       },
                     ),
@@ -84,15 +84,15 @@ class LoginScreen extends StatelessWidget {
                         textColor: Colors.white,
                         onPressed: () {
                           if (formKey.currentState.validate()) {
-                            User user = new User(
+                            final User user = User(
                                 email: _emailController.text,
                                 password: _passwordController.text);
                             userManager.signIn(
                                 user: user,
-                                onFail: (e) {
+                                onFail: (dynamic e) {
                                   scaffoldKey.currentState
                                       .showSnackBar(SnackBar(
-                                    content: Text("Falha ao entrar $e"),
+                                    content: Text('Falha ao entrar $e'),
                                     backgroundColor: Colors.red,
                                   ));
                                 },
@@ -105,10 +105,10 @@ class LoginScreen extends StatelessWidget {
                         child: userManager.loading
                             ? CircularProgressIndicator(
                                 valueColor:
-                                    AlwaysStoppedAnimation(Colors.white),
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
                               )
-                            : Text(
-                                "Entrar",
+                            : const Text(
+                                'Entrar',
                                 style: TextStyle(fontSize: 18),
                               ),
                       ),
@@ -121,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                 child: FlatButton(
                   padding: EdgeInsets.zero,
                   onPressed: () {},
-                  child: Text("Esqueci a senha"),
+                  child: const Text('Esqueci a senha'),
                 ),
               ),
             ),

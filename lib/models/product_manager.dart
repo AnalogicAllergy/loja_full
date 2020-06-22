@@ -37,4 +37,12 @@ class ProductManager extends ChangeNotifier {
         productSnapshots.documents.map((e) => Product.fromDocument(e)).toList();
     notifyListeners();
   }
+
+  Product findProductById(String productId) {
+    try {
+      return allProducts.firstWhere((element) => element.id == productId);
+    } catch (e) {
+      return null;
+    }
+  }
 }

@@ -6,6 +6,8 @@ class User {
   String name;
   String confirmedPassword;
   String id;
+  CollectionReference get cartReference =>
+      firestoreReference.collection('cart');
 
   DocumentReference get firestoreReference =>
       Firestore.instance.document('users/$id');
@@ -21,6 +23,6 @@ class User {
   }
 
   Map<String, dynamic> toMap() {
-    return {'name': name, 'email': email};
+    return <String, dynamic>{'name': name, 'email': email};
   }
 }

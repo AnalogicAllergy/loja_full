@@ -7,19 +7,19 @@ import 'package:provider/provider.dart';
 class SignUpScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  User user = new User();
+  User user = User();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text("Criar Conta"),
+        title: const Text('Criar Conta'),
         centerTitle: true,
       ),
       body: Center(
         child: Card(
           elevation: 8,
-          margin: EdgeInsets.symmetric(horizontal: 16),
+          margin: const EdgeInsets.symmetric(horizontal: 16),
           child: Form(
             key: formKey,
             //observable do tipo userManager
@@ -28,20 +28,21 @@ class SignUpScreen extends StatelessWidget {
               builder: (_, userManager, __) {
                 return ListView(
                   shrinkWrap: true,
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   children: <Widget>[
                     TextFormField(
-                      decoration: InputDecoration(hintText: "Nome Completo"),
+                      decoration:
+                          const InputDecoration(hintText: 'Nome Completo'),
                       enabled: !userManager.loading,
                       autocorrect: false,
-                      onSaved: (name) => user.name = name,
-                      validator: (name) {
+                      onSaved: (String name) => user.name = name,
+                      validator: (String name) {
                         if (name.isEmpty)
-                          return "Campo obrigatorio";
+                          return 'Campo obrigatorio';
                         else if (name.length < 2)
-                          return "Nome muito curto";
+                          return 'Nome muito curto';
                         else if (name.trim().split(' ').length == 1)
-                          return "Preencha seu nome completo";
+                          return 'Preencha seu nome completo';
                         return null;
                       },
                     ),
@@ -49,15 +50,15 @@ class SignUpScreen extends StatelessWidget {
                       height: 16,
                     ),
                     TextFormField(
-                      decoration: InputDecoration(hintText: "Email"),
+                      decoration: const InputDecoration(hintText: 'Email'),
                       autocorrect: false,
                       keyboardType: TextInputType.emailAddress,
                       enabled: !userManager.loading,
-                      onSaved: (email) => user.email = email,
-                      validator: (email) {
+                      onSaved: (String email) => user.email = email,
+                      validator: (String email) {
                         if (email.isEmpty)
-                          return "Campo Obrigatorio";
-                        else if (!emailValid(email)) return "Email invalido";
+                          return 'Campo Obrigatorio';
+                        else if (!emailValid(email)) return 'Email invalido';
                         return null;
                       },
                     ),
@@ -65,16 +66,16 @@ class SignUpScreen extends StatelessWidget {
                       height: 16,
                     ),
                     TextFormField(
-                      decoration: InputDecoration(hintText: "Senha"),
+                      decoration: const InputDecoration(hintText: 'Senha'),
                       autocorrect: false,
                       enabled: !userManager.loading,
-                      onSaved: (password) => user.password = password,
+                      onSaved: (String password) => user.password = password,
                       obscureText: true,
-                      validator: (password) {
+                      validator: (String password) {
                         if (password.isEmpty)
-                          return "Campo obrigatorio";
+                          return 'Campo obrigatorio';
                         else if (password.length < 6)
-                          return "Senha muito curta";
+                          return 'Senha muito curta';
                         return null;
                       },
                     ),
@@ -82,16 +83,18 @@ class SignUpScreen extends StatelessWidget {
                       height: 16,
                     ),
                     TextFormField(
-                      decoration: InputDecoration(hintText: "Repita a senha"),
+                      decoration:
+                          const InputDecoration(hintText: 'Repita a senha'),
                       autocorrect: false,
                       enabled: !userManager.loading,
                       obscureText: true,
-                      onSaved: (confirm) => user.confirmedPassword = confirm,
-                      validator: (password) {
+                      onSaved: (String confirm) =>
+                          user.confirmedPassword = confirm,
+                      validator: (String password) {
                         if (password.isEmpty)
-                          return "Campo obrigatorio";
+                          return 'Campo obrigatorio';
                         else if (password.length < 6)
-                          return "Senha muito curta";
+                          return 'Senha muito curta';
                         return null;
                       },
                     ),
@@ -114,19 +117,19 @@ class SignUpScreen extends StatelessWidget {
                                   if (user.password != user.confirmedPassword) {
                                     scaffoldKey.currentState
                                         .showSnackBar(SnackBar(
-                                      content:
-                                          Text("As senhas devem ser iguais"),
+                                      content: const Text(
+                                          'As senhas devem ser iguais'),
                                       backgroundColor: Colors.red,
                                     ));
                                     return;
                                   }
                                   userManager.signUp(
                                       user: user,
-                                      onFail: (e) {
+                                      onFail: (dynamic e) {
                                         scaffoldKey.currentState
                                             .showSnackBar(SnackBar(
                                           content:
-                                              Text("Falha ao criar conta $e"),
+                                              Text('Falha ao criar conta $e'),
                                           backgroundColor: Colors.red,
                                         ));
                                       },
@@ -136,12 +139,12 @@ class SignUpScreen extends StatelessWidget {
                                 }
                               },
                         child: userManager.loading
-                            ? CircularProgressIndicator(
+                            ? const CircularProgressIndicator(
                                 valueColor:
-                                    AlwaysStoppedAnimation(Colors.white),
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
                               )
-                            : Text(
-                                "Criar Conta",
+                            : const Text(
+                                'Criar Conta',
                                 style: TextStyle(fontSize: 18),
                               ),
                       ),
@@ -154,7 +157,7 @@ class SignUpScreen extends StatelessWidget {
                 child: FlatButton(
                   padding: EdgeInsets.zero,
                   onPressed: () {},
-                  child: Text("Esqueci a senha"),
+                  child: const Text('Esqueci a senha'),
                 ),
               ),
             ),
