@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProxyProvider<UserManager, CartManager>(
           create: (_) => CartManager(),
           lazy: false,
-          update: (_, userManager, cartManager) =>
+          update: (_, UserManager userManager, CartManager cartManager) =>
               cartManager..updateUser(userManager),
         ),
         ChangeNotifierProxyProvider<UserManager, AdminUsersManager>(
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         initialRoute: '/base',
-        onGenerateRoute: (settings) {
+        onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case '/signup':
               return MaterialPageRoute(builder: (_) => SignUpScreen());
