@@ -6,6 +6,7 @@ class User {
   String name;
   String confirmedPassword;
   String id;
+  bool admin = false;
   CollectionReference get cartReference =>
       firestoreReference.collection('cart');
 
