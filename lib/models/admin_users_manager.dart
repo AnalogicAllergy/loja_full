@@ -21,15 +21,16 @@ class AdminUsersManager extends ChangeNotifier {
   }
 
   void _listenToUsers() {
-    subscription = firestore.collection('users').snapshots().listen((value) {
+    subscription =
+        firestore.collection('users').snapshots().listen((QuerySnapshot value) {
       users = value.documents.map((e) => User.fromDocument(e)).toList();
-      users
-          .sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+      users.sort((User a, User b) =>
+          a.name.toLowerCase().compareTo(b.name.toLowerCase()));
       notifyListeners();
     });
   }
 
-  List<String> get names => users.map((e) => e.name).toList();
+  List<String> get names => users.map((User e) => e.name).toList();
 
   @override
   void dispose() {
